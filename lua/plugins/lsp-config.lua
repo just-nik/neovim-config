@@ -15,6 +15,9 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "jose-elias-alvarez/nvim-lsp-ts-utils",
+    },
     keys = require("after.keys.lsp-keys"),
     config = function()
       local lspconfig = require("lspconfig")
@@ -40,6 +43,12 @@ return {
         --     disableSuggestions = false,
         --   },
         -- },
+        on_attach = function(client, bufnr)
+          require("nvim-lsp-ts-utils").setup({
+            filter_out_diagnostics_by_code = { 80001 },
+          })
+          require("nvim-lsp-ts-utils").setup_client(client)
+        end,
       })
 
       -- lspconfig.emmet_ls.setup({
