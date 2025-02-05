@@ -43,6 +43,8 @@ return {
         --     disableSuggestions = false,
         --   },
         -- },
+        -- the module used in on_attach is not updated anymore then if you
+        -- see any pesky errors remove the following block of code
         on_attach = function(client, bufnr)
           require("nvim-lsp-ts-utils").setup({
             filter_out_diagnostics_by_code = { 80001 },
